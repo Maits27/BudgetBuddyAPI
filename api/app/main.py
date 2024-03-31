@@ -1,31 +1,24 @@
-from fastapi import FastAPI, HTTPException, Depends
-from .database import engine, get_db
+from fastapi import FastAPI, Depends, HTTPException
+from .database import get_db
 from . import crud
 from .schemas import *
-from models import User, Gasto, Base
 from sqlalchemy.orm import Session
-from typing import List
 
 # Tutorial: https://www.youtube.com/watch?v=d_ugoWsvGLI
 # Documentation: https://fastapi.tiangolo.com/tutorial/sql-databases/
-
-Base.metadata.create_all(bind=engine)
-
-app = FastAPI()
-
-@app.get('/')
-async def Home():
-    return {"message": "BudgetBuddyAPI is running!"}
 
 ##################################################################################
 ##################################    USERS    ###################################
 ##################################################################################
 
-@app.post('/users/', response_model=User)
-def create_user(user: UserCreate, db: Session = Depends(get_db)):
-    return crud.create_user(db, user)
+app = FastAPI()
 
-@app.get('/users/', response_model=List[User])
+# Rutas de la API
+@app.post("/users/", response_model=User)
+def create_user(user: UserCreate, db: Session = Depends(get_db)):
+    return crud.create_user(db=db, user=user)
+
+@app.get('/users/', response_model=list[User])
 def read_users(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
     return crud.get_users(db, skip, limit)
 
@@ -54,14 +47,14 @@ def delete_user(email: str, db: Session = Depends(get_db)):
 ##################################    GASTOS    ##################################
 ##################################################################################
 
-@app.post('{userid}/gastos/', response_model=List[Gasto])
+@app.post('{userid}/gastos/', response_model=list[Gasto])
 def create_gasto(gasto: GastoCreate, db: Session = Depends(get_db)):
     return crud.create_gasto(db, gasto)
 
-@app.get('{userid}/gastos/', response_model=List[Gasto])
+@app.get('{userid}/gastos/', response_model=list[Gasto])
 def read_gastos_by_user(userId: str, db: Session = Depends(get_db)):
     return crud.get_gastos_by_user(db, userId)
 
-@app.delete('{userid}/gastos/', response_model=List[Gasto])
+@app.delete('{userid}/gastos/', response_model=list[Gasto])
 def delete_all_gastos_by_user(userId: str, db: Session = Depends(get_db)):
     return crud.delete_all_gastos_by_user(db, userId)

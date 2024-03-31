@@ -5,27 +5,38 @@ services:
   postgres:
     image: postgres:latest
     restart: always
+
+    user: postgres
     environment:
       POSTGRES_DB: budgetBuddyDB2
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 1234
+
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
     ports:
-      - "5432:5432"
+      - "8001:8001"
     volumes:
-      - ./database:/docker-entrypoint-budgetBuddyDB2.d
+      - ./database:/docker-entrypoint-initdb.d
 
   api:
-    build: ./api/.
+    build: api/.
+    image: budgetbuddy-api
+    restart: always
     volumes:
       - ./src:/code
-    restart: always
     environment:
       POSTGRES_IP: postgres
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 1234
       POSTGRES_DB: budgetBuddyDB2
-    ports:
-      - "8000:8000"
+    expose:
+      - "8000"
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
     command: uvicorn app.main:app --host 0.0.0.0 --reload 

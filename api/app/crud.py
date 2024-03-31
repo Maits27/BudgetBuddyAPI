@@ -1,18 +1,18 @@
 from sqlalchemy.orm import Session
-from models import User, Gasto
-from schemas import UserCreate, GastoCreate
+from .models import User, Gasto
+from .schemas import UserCreate, GastoCreate
 
 ##################################################################################
 ##################################    USERS    ###################################
 ##################################################################################
 
-def get_user(db: Session, email: str):
+def get_user(db: Session, email: str) -> User:
     return db.query(User).filter(User.email == email).first()
 
-def get_users(db: Session, skip: int = 0, limit: int = 100):
+def get_users(db: Session, skip: int = 0, limit: int = 100) -> list[User]:
     return db.query(User).offset(skip).limit(limit).all()
 
-def create_user(db: Session, user: UserCreate):
+def create_user(db: Session, user: UserCreate) -> User:
     db_user = User(email=user.email, nombre=user.nombre, password=user.password)
     db.add(db_user)
     db.commit()
