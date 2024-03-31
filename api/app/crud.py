@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from model import User, Gasto
+from models import User, Gasto
 from schemas import UserCreate, GastoCreate
 
 ##################################################################################
@@ -37,11 +37,11 @@ def update_user(db: Session, email: str, user: UserCreate):
 ##################################    GASTOS    ##################################
 ##################################################################################
 
-def get_gasto(db: Session, id: str):
-    return db.query(Gasto).filter(Gasto.id == id).first()
+# def get_gasto(db: Session, id: str):
+#     return db.query(Gasto).filter(Gasto.id == id).first()
 
-def get_gastos(db: Session, skip: int = 0, limit: int = 100):
-    return db.query(Gasto).offset(skip).limit(limit).all()
+# def get_gastos(db: Session, skip: int = 0, limit: int = 100):
+#     return db.query(Gasto).offset(skip).limit(limit).all()
 
 def create_gasto(db: Session, gasto: GastoCreate):
     db_gasto = Gasto(id=gasto.id, nombre=gasto.nombre, cantidad=gasto.cantidad, fecha=gasto.fecha, tipo=gasto.tipo, userId=gasto.userId)
@@ -50,11 +50,11 @@ def create_gasto(db: Session, gasto: GastoCreate):
     db.refresh(db_gasto)
     return db_gasto
 
-def delete_gasto(db: Session, id: str):
-    db_gasto = db.query(Gasto).filter(Gasto.id == id).first()
-    db.delete(db_gasto)
-    db.commit()
-    return db_gasto
+# def delete_gasto(db: Session, id: str):
+#     db_gasto = db.query(Gasto).filter(Gasto.id == id).first()
+#     db.delete(db_gasto)
+#     db.commit()
+#     return db_gasto
 
 def get_gastos_by_user(db: Session, userId: str):
     return db.query(Gasto).filter(Gasto.userId == userId).all()
