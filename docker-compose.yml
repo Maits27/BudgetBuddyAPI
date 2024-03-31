@@ -1,0 +1,31 @@
+version: "3.9"
+
+services:
+
+  postgres:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_DB: budgetBuddyDB2
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./database:/docker-entrypoint-budgetBuddyDB2.d
+
+  api:
+    build: ./api/.
+    volumes:
+      - ./src:/code
+    restart: always
+    environment:
+      POSTGRES_IP: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: budgetBuddyDB2
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+    command: uvicorn app.main:app --host 0.0.0.0 --reload 
