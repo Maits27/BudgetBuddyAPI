@@ -1,6 +1,7 @@
 from fastapi import FastAPI, Depends, HTTPException
 from .database import get_db
 from . import crud
+from .models import User, Gasto
 from .schemas import *
 from sqlalchemy.orm import Session
 
