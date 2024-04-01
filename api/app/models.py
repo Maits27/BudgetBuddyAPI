@@ -11,7 +11,7 @@ class User(Base):
     email = Column(String, index=True)
     password = Column(String)
 
-    gastos = relationship("Gasto", back_populates="owner")
+    gastos = relationship("Gasto", back_populates="user")
 
 class Gasto(Base):
     __tablename__ = "gastos"
@@ -22,5 +22,5 @@ class Gasto(Base):
     userId = Column(String, ForeignKey("users.nombre"))
     id = Column(String, primary_key=True, index=True)
 
-    owner = relationship("User", back_populates="gastos")
+    user = relationship("User", back_populates="gastos")
     

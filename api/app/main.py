@@ -47,15 +47,15 @@ def delete_user(email: str, db: Session = Depends(get_db)):
 ##################################    GASTOS    ##################################
 ##################################################################################
 
-@app.post('/users/{userid}/gastos/', response_model=list[Gasto])
+@app.post('{userid}/gastos/', response_model=list[Gasto])
 def create_gasto(gasto: GastoCreate, db: Session = Depends(get_db)):
     return crud.create_gasto(db, gasto)
 
-@app.get('/users/{userid}/gastos/', response_model=list[Gasto])
+@app.get('{userid}/gastos/', response_model=list[Gasto])
 def read_gastos_by_user(userId: str, db: Session = Depends(get_db)):
     return crud.get_gastos_by_user(db, userId)
 
-@app.delete('/users/{userid}/gastos/', response_model=list[Gasto])
+@app.delete('{userid}/gastos/', response_model=list[Gasto])
 def delete_all_gastos_by_user(userId: str, db: Session = Depends(get_db)):
     return crud.delete_all_gastos_by_user(db, userId)
 

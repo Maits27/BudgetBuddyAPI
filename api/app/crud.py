@@ -1,6 +1,7 @@
 from sqlalchemy.orm import Session
 from .models import User, Gasto
 from .schemas import UserCreate, GastoCreate
+from typing import Optional
 
 ##################################################################################
 ##################################    USERS    ###################################
@@ -43,8 +44,8 @@ def update_user(db: Session, email: str, user: UserCreate):
 def get_gastos(db: Session, skip: int = 0, limit: int = 100):
     return db.query(Gasto).offset(skip).limit(limit).all()
 
-def create_gasto(db: Session, gasto: GastoCreate, userId: str):
-    db_gasto = Gasto(**gasto.dict(), userId=userId)
+def create_gasto(db: Session, gasto: GastoCreate):
+    db_gasto = Gasto(**gasto.dict())
     db.add(db_gasto)
     db.commit()
     db.refresh(db_gasto)
@@ -56,8 +57,11 @@ def create_gasto(db: Session, gasto: GastoCreate, userId: str):
 #     db.commit()
 #     return db_gasto
 
-def get_gastos_by_user(db: Session, userId: str):
-    return db.query(Gasto).filter(Gasto.userId == userId).all()
+def get_gastos_by_user(db: Session, userId: Optional[str] = None, skip: int = 0, limit: int = 100):
+    if userId:
+        return db.query(Gasto).filter(Gasto.userId == userId).offset(skip).limit(limit).all()
+    else:
+        return db.query(Gasto).offset(skip).limit(limit).all()
 
 def delete_all_gastos_by_user(db: Session, userId: str):
     db_gastos = db.query(Gasto).filter(Gasto.userId == userId).all()
