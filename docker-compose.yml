@@ -34,8 +34,8 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 1234
       POSTGRES_DB: budgetBuddyDB2
-    expose:
-      - "8000"
+    ports:
+      - "8000:8000"
     depends_on:
       postgres:
         condition: service_healthy
