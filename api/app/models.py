@@ -7,8 +7,8 @@ Base = declarative_base()
 
 class User(Base):
     __tablename__ = "users"
-    nombre = Column(String, primary_key=True, index=True)
-    email = Column(String, index=True)
+    nombre = Column(String, index=True)
+    email = Column(String, primary_key=True, index=True)
     password = Column(String)
 
     gastos = relationship("Gasto", back_populates="user")
@@ -19,7 +19,7 @@ class Gasto(Base):
     cantidad = Column(Float)
     fecha = Column(Integer)
     tipo = Column(String)
-    user_id = Column(String, ForeignKey("users.nombre"))
+    user_id = Column(String, ForeignKey("users.email"))
     id = Column(String, primary_key=True, index=True)
 
     user = relationship("User", back_populates="gastos")
