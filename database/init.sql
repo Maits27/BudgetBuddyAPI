@@ -78,5 +78,4 @@ INSERT INTO gastos VALUES('Gasto Inicial 49',45.0,19801,'Hogar','BudgetBuddy','d
 INSERT INTO gastos VALUES('Gasto Inicial 69',90.0,19822,'Transporte','BudgetBuddy','c1d66049-b4a7-47b5-ab43-2ef8adea45f4');
 INSERT INTO gastos VALUES('Gasto Inicial 79',36.0,19842,'Comida','BudgetBuddy','3dce78b1-87ef-400a-acb7-add0802d59b1');
 INSERT INTO gastos VALUES('Gasto Inicial 89',45.0,19832,'Actividad','BudgetBuddy','ba1beb43-8e49-45a9-a830-0335660fa30a');
-INSERT INTO gastos VALUES('Gasto Inicial 99',9.0,19813,'Otros','BudgetBuddy','03e7c0c7-6775-4643-a54b-c0dfa8d5ee9e');
 
