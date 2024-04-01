@@ -40,8 +40,8 @@ def update_user(db: Session, email: str, user: UserCreate):
 # def get_gasto(db: Session, id: str):
 #     return db.query(Gasto).filter(Gasto.id == id).first()
 
-# def get_gastos(db: Session, skip: int = 0, limit: int = 100):
-#     return db.query(Gasto).offset(skip).limit(limit).all()
+def get_gastos(db: Session, skip: int = 0, limit: int = 100):
+    return db.query(Gasto).offset(skip).limit(limit).all()
 
 def create_gasto(db: Session, gasto: GastoCreate):
     db_gasto = Gasto(id=gasto.id, nombre=gasto.nombre, cantidad=gasto.cantidad, fecha=gasto.fecha, tipo=gasto.tipo, userId=gasto.userId)
