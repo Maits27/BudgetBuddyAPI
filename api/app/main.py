@@ -47,7 +47,7 @@ def delete_user(email: str, db: Session = Depends(get_db)):
 ##################################    GASTOS    ##################################
 ##################################################################################
 
-@app.post('/gastos/{user_id}/', response_model=list[Gasto])
+@app.post('/gastos/', response_model=list[Gasto])
 def create_gasto(gasto: GastoCreate, db: Session = Depends(get_db)):
     return crud.create_gasto(db, gasto)
 
