@@ -18,7 +18,7 @@ class GastoBase(BaseModel):
     cantidad: float
     fecha: int
     tipo: str
-    userId: str
+    user_id: str
     id: str
 
 class GastoCreate(GastoBase):

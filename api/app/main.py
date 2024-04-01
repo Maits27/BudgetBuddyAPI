@@ -47,17 +47,17 @@ def delete_user(email: str, db: Session = Depends(get_db)):
 ##################################    GASTOS    ##################################
 ##################################################################################
 
-@app.post('{userId}/gastos/', response_model=list[Gasto])
+@app.post('{user_id}/gastos/', response_model=list[Gasto])
 def create_gasto(gasto: GastoCreate, db: Session = Depends(get_db)):
     return crud.create_gasto(db, gasto)
 
-@app.get('{userId}/gastos/', response_model=list[Gasto])
-def read_gastos_by_user(userId: str, db: Session = Depends(get_db)):
-    return crud.get_gastos_by_user(db, userId)
+@app.get('{user_id}/gastos/', response_model=list[Gasto])
+def read_gastos_by_user(user_id: str, db: Session = Depends(get_db)):
+    return crud.get_gastos_by_user(db, user_id)
 
-@app.delete('{userId}/gastos/', response_model=list[Gasto])
-def delete_all_gastos_by_user(userId: str, db: Session = Depends(get_db)):
-    return crud.delete_all_gastos_by_user(db, userId)
+@app.delete('{user_id}/gastos/', response_model=list[Gasto])
+def delete_all_gastos_by_user(user_id: str, db: Session = Depends(get_db)):
+    return crud.delete_all_gastos_by_user(db, user_id)
 
 @app.get('/gastos/', response_model=list[Gasto])
 def read_gastos(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):

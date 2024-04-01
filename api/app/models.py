@@ -19,7 +19,7 @@ class Gasto(Base):
     cantidad = Column(Float)
     fecha = Column(Integer)
     tipo = Column(String)
-    userId = Column(String, ForeignKey("users.nombre"))
+    user_id = Column(String, ForeignKey("users.nombre"))
     id = Column(String, primary_key=True, index=True)
 
     user = relationship("User", back_populates="gastos")

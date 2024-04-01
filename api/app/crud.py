@@ -57,14 +57,14 @@ def create_gasto(db: Session, gasto: GastoCreate):
 #     db.commit()
 #     return db_gasto
 
-def get_gastos_by_user(db: Session, userId: Optional[str] = None, skip: int = 0, limit: int = 100):
-    if userId:
-        return db.query(Gasto).filter(Gasto.userId == userId).offset(skip).limit(limit).all()
+def get_gastos_by_user(db: Session, user_id: Optional[str] = None, skip: int = 0, limit: int = 100):
+    if user_id:
+        return db.query(Gasto).filter(Gasto.user_id == user_id).offset(skip).limit(limit).all()
     else:
         return db.query(Gasto).offset(skip).limit(limit).all()
 
-def delete_all_gastos_by_user(db: Session, userId: str):
-    db_gastos = db.query(Gasto).filter(Gasto.userId == userId).all()
+def delete_all_gastos_by_user(db: Session, user_id: str):
+    db_gastos = db.query(Gasto).filter(Gasto.user_id == user_id).all()
     for gasto in db_gastos:
         db.delete(gasto)
     db.commit()

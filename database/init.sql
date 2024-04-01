@@ -9,10 +9,10 @@ CREATE TABLE gastos (
     cantidad REAL NOT NULL, 
     fecha INTEGER NOT NULL, 
     tipo TEXT NOT NULL, 
-    userId TEXT NOT NULL, 
+    user_id TEXT NOT NULL, 
     id TEXT NOT NULL, 
     PRIMARY KEY (id), 
-    FOREIGN KEY (userId) REFERENCES users (nombre) ON UPDATE NO ACTION ON DELETE CASCADE 
+    FOREIGN KEY (user_id) REFERENCES users (nombre) ON UPDATE NO ACTION ON DELETE CASCADE 
 );
 
 INSERT INTO users VALUES('BudgetBuddy','budgetbuddy46@gmail.com','3c9909afec25354d551dae21590bb26e38d53f2173b8d3dc3eee4c047e7ab1c1eb8b85103e3be7ba613b31bb5c9c36214dc9f14a42fd7a2fdb84856bca5c44c2');
