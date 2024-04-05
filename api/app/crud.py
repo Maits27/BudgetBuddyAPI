@@ -42,7 +42,7 @@ def get_profile_image(db: Session, email: str) -> bool:
 
 
 def set_profile_image(db: Session, email: str, path: str) -> bool:
-    if isinstance(user := get_user(db, email), User):
+    if user := get_user(db, email):
         user.profile_image = path
         db.commit()
         db.refresh(user)
