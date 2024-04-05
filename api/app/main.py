@@ -73,7 +73,7 @@ async def set_user_profile_image(file: UploadFile, email: str, db: Session = Dep
     file_extension = guess_extension(file.content_type)
     path = f'/budgetbuddy_api/images/{email}{file_extension}'
 
-    if crud.set_profile_image(db, user, path):
+    if crud.set_profile_image(db, email, path):
         contents = await file.read()
         with open(path, 'wb') as f:
             f.write(contents)
