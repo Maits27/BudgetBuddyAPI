@@ -10,6 +10,7 @@ class User(Base):
     nombre = Column(String, index=True)
     email = Column(String, primary_key=True, index=True)
     password = Column(String)
+    profile_image = Column(String, default="/budgetbuddy_api/images/start_icon.png")
 
     gastos = relationship("Gasto", back_populates="user")
 

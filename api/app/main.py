@@ -1,9 +1,14 @@
-from fastapi import FastAPI, Depends, HTTPException
+from fastapi import FastAPI, Depends, HTTPException, UploadFile
+from fastapi.responses import FileResponse
+from pathlib import Path
+from mimetypes import guess_extension
 from .database import get_db
 from . import crud
 from .models import User, Gasto
 from .schemas import *
 from sqlalchemy.orm import Session
+
+VALID_IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/webp']
 
 # Tutorial: https://www.youtube.com/watch?v=d_ugoWsvGLI
 # Documentation: https://fastapi.tiangolo.com/tutorial/sql-databases/
@@ -43,6 +48,34 @@ def delete_user(email: str, db: Session = Depends(get_db)):
     if db_user is None:
         raise HTTPException(status_code=404, detail="User not found")
     return crud.delete_user(db, email)
+
+##################################    PERFIL    ##################################
+@app.get('/profile/{email}', response_class=FileResponse)
+def get_profile_image(email: str, db: Session = Depends(get_db)):
+    if not (crud.get_user(db, email)):
+        raise HTTPException(status_code=404, detail="User doesn't exist")
+    image = crud.get_profile_image(db, email)
+    if image!= None and Path(image).exists():
+        return FileResponse(image, filename=Path(image).name)
+    else:
+        return FileResponse("/budgetbuddy_api/images/start_icon.png", filename="start_icon.png")
+
+@app.put('/profile/{email}', response_model=User)
+def update_profile_image(email: str, profile_image: UploadFile, db: Session = Depends(get_db)):
+    if not (user:= crud.get_user(db, email)):
+        raise HTTPException(status_code=404, detail="User not found")  
+    if profile_image.content_type not in VALID_IMAGE_TYPES:
+        raise HTTPException(status_code=400, detail="Invalid image type")
+
+    file_extension = guess_extension(profile_image.content_type)
+    path = f"/budgetbuddy_api/images/{email}{file_extension}"
+    if crud.set_profile_image(db, email, path):
+        with open(path, "wb") as file:
+            file.write(profile_image.file.read())
+        return user
+
+
+##################################################################################
 
 ##################################################################################
 ##################################    GASTOS    ##################################

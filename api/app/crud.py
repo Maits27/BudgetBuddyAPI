@@ -34,6 +34,23 @@ def update_user(db: Session, email: str, user: UserCreate):
     db.refresh(db_user)
     return db_user
 
+##################################    PERFIL    ##################################
+
+def get_profile_image(db: Session, email: str) -> bool:
+    result = db.query(User.profile_image).filter(User.email == email).first()
+    return result.profile_image if result else result
+
+
+def set_profile_image(db: Session, email: str, path: str) -> bool:
+    if isinstance(user := get_user(db, email), User):
+        user.profile_image = path
+        db.commit()
+        db.refresh(user)
+        return True
+    return False
+
+##################################################################################
+
 ##################################################################################
 ##################################    GASTOS    ##################################
 ##################################################################################

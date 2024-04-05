@@ -2,6 +2,7 @@ CREATE TABLE users (
     nombre TEXT NOT NULL, 
     email TEXT NOT NULL, 
     password TEXT NOT NULL, 
+    profile_image TEXT,
     PRIMARY KEY (email)
 );
 CREATE TABLE gastos (
