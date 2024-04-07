@@ -29,7 +29,8 @@ def delete_user(db: Session, email: str):
 def update_user(db: Session, email: str, user: UserCreate):
     db_user = db.query(User).filter(User.email == email).first()
     db_user.nombre = user.nombre
-    db_user.password = user.password
+    if user.password !="":
+        db_user.password = user.password
     db.commit()
     db.refresh(db_user)
     return db_user
