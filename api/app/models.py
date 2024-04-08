@@ -20,7 +20,8 @@ class Gasto(Base):
     cantidad = Column(Float)
     fecha = Column(Integer)
     tipo = Column(String)
-    location = Column(String)
+    latitud = Column(Float)
+    longitud = Column(Float)
     user_id = Column(String, ForeignKey("users.email"))
     id = Column(String, primary_key=True, index=True)
 
