@@ -18,7 +18,8 @@ class GastoBase(BaseModel):
     cantidad: float
     fecha: int
     tipo: str
-    location: str
+    lat: float
+    long: float
     user_id: str
     id: str
 
