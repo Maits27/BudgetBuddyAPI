@@ -4,9 +4,12 @@ from pathlib import Path
 from mimetypes import guess_extension
 from .database import get_db
 from . import crud
-from .models import User, Gasto
+from .models import User, Gasto, FirebaseClientToken
 from .schemas import *
 from sqlalchemy.orm import Session
+from firebase_admin import credentials, messaging
+from unidecode import unidecode
+
 
 VALID_IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/webp']
 
@@ -18,6 +21,11 @@ VALID_IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/webp']
 ##################################################################################
 
 app = FastAPI()
+
+@app.post('/notifications/subscribe/', status_code=status.HTTP_202_ACCEPTED, tags=["Notifications"])
+def suscribe_user_to_alert(token: FirebaseClientToken):
+    # Procesamos el nombre de la provincia quitando espacios y tíldes y se suscribe al usuario
+    messaging.subscribe_to_topic([token.fcm_client_token], 'All')
 
 # Rutas de la API
 @app.post("/users/", response_model=User)
