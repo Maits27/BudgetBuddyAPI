@@ -27,16 +27,23 @@ services:
     build: api/.
     image: budgetbuddy-api
     restart: always
-    volumes:
-      - ./src:/code
+    
     environment:
       POSTGRES_IP: postgres
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: JHQVUVb5auxUtwdTc8gX
       POSTGRES_DB: budgetBuddyDB2
+      FIREBASE_CREDENTIALS: ${API_FIREBASE_CREDENTIALS}
+      
     ports:
       - "8000:8000"
+
+    volumes:
+      - ./src:/code
+      - "${CREDENTIALS_FOLDER}:${API_CREDENTIALS_FOLDER}"
+
     depends_on:
       postgres:
         condition: service_healthy
+
     command: uvicorn app.main:app --host 0.0.0.0 --reload 

@@ -1,3 +1,4 @@
+from os import environ
 from fastapi import FastAPI, Depends, HTTPException, UploadFile, status
 from fastapi.responses import FileResponse
 from pathlib import Path
@@ -19,7 +20,8 @@ VALID_IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/webp']
 ##################################################################################
 ##################################    USERS    ###################################
 ##################################################################################
-
+cred = credentials.Certificate(environ['FIREBASE_CREDENTIALS'])
+firebase_admin.initialize_app(cred)
 app = FastAPI()
 
 @app.post('/notifications/subscribe/', status_code=status.HTTP_202_ACCEPTED, tags=["Notifications"])
