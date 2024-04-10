@@ -31,3 +31,5 @@ class Gasto(GastoBase):
     class Config:
         orm_mode = True
 
+class FirebaseClientToken(BaseModel):
+    fcm_client_token: str

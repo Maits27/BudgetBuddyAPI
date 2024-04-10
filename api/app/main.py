@@ -4,7 +4,7 @@ from pathlib import Path
 from mimetypes import guess_extension
 from .database import get_db
 from . import crud
-from .models import User, Gasto, FirebaseClientToken
+from .models import User, Gasto
 from .schemas import *
 from sqlalchemy.orm import Session
 from firebase_admin import credentials, messaging

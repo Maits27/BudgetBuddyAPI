@@ -26,7 +26,3 @@ class Gasto(Base):
     id = Column(String, primary_key=True, index=True)
 
     user = relationship("User", back_populates="gastos")
-
-class FirebaseClientToken(BaseModel):
-    fcm_client_token: str
-    
