@@ -33,14 +33,14 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: JHQVUVb5auxUtwdTc8gX
       POSTGRES_DB: budgetBuddyDB2
-      FIREBASE_CREDENTIALS: ${API_FIREBASE_CREDENTIALS}
-      
+      FIREBASE_CREDENTIALS: /api_credentials/key.json
+
     ports:
       - "8000:8000"
 
     volumes:
       - ./src:/code
-      - "${CREDENTIALS_FOLDER}:${API_CREDENTIALS_FOLDER}"
+      - /home/maitane/firebase_credentials:/api_credentials
 
     depends_on:
       postgres:

@@ -8,6 +8,7 @@ from . import crud
 from .models import User, Gasto
 from .schemas import *
 from sqlalchemy.orm import Session
+import firebase_admin
 from firebase_admin import credentials, messaging
 from unidecode import unidecode
 
@@ -27,7 +28,7 @@ app = FastAPI()
 @app.post('/notifications/subscribe/', status_code=status.HTTP_202_ACCEPTED, tags=["Notifications"])
 def suscribe_user_to_alert(token: FirebaseClientToken):
     # Procesamos el nombre de la provincia quitando espacios y tíldes y se suscribe al usuario
-    messaging.subscribe_to_topic([token.fcm_client_token], 'All')
+    messaging.subscribe_to_topic([token.fcm_client_token], 'all')
 
 # Rutas de la API
 @app.post("/users/", response_model=User)
