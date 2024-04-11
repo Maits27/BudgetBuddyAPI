@@ -29,6 +29,22 @@ app = FastAPI()
 def suscribe_user_to_alert(token: FirebaseClientToken):
     # Procesamos el nombre de la provincia quitando espacios y tíldes y se suscribe al usuario
     messaging.subscribe_to_topic([token.fcm_client_token], 'all')
+async def send_notification(message: Message, topic: str = 'all'):
+    messaging.send(
+        messaging.Message(
+            data={k: f'{v}' for k, v in dict(message).items()},
+            topic=unidecode(topic.replace(' ', '_'))
+        )
+    )
+
+    messaging.send(
+        messaging.Message(
+            notification=messaging.Notification(
+                **dict(message)
+            ),
+            topic=unidecode(topic.replace(' ', '_'))
+        )
+    )
 
 # Rutas de la API
 @app.post("/users/", response_model=User)

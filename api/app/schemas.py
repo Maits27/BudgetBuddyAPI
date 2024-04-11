@@ -33,3 +33,7 @@ class Gasto(GastoBase):
 
 class FirebaseClientToken(BaseModel):
     fcm_client_token: str
+
+class Message(BaseModel):
+    title: str
+    body: str | None
