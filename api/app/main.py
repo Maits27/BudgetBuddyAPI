@@ -46,6 +46,10 @@ async def send_notification(message: Message, topic: str = 'all'):
         )
     )
 
+@app.post("/notifications", tags=["Notifications"])
+async def send_broadcast_notification(message: Message):
+    await send_notification(message)
+
 # Rutas de la API
 @app.post("/users/", response_model=User)
 def create_user(user: UserCreate, db: Session = Depends(get_db)):
