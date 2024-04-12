@@ -3,6 +3,7 @@ CREATE TABLE users (
     email TEXT NOT NULL,
     password TEXT NOT NULL,
     profile_image TEXT,
+    login BOOLEAN DEFAULT FALSE,
     PRIMARY KEY (email)
 );
 CREATE TABLE gastos (

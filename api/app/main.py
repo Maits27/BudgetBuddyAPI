@@ -50,6 +50,22 @@ async def send_notification(message: Message, topic: str = 'all'):
 async def send_broadcast_notification(message: Message):
     await send_notification(message)
 
+@app.get('/login/{email}', response_model=list[User])
+def login_user(email: str, db: Session = Depends(get_db)):
+    if not (crud.get_user(db, email)):
+        raise HTTPException(status_code=404, detail="User doesn't exist")
+    return crud.is_user_logged(db, email)
+
+@app.post('/login/{email}', response_model=User)
+def login_user(email: str, login:bool, db: Session = Depends(get_db)):
+    if not (crud.get_user(db, email)):
+        raise HTTPException(status_code=404, detail="User doesn't exist")
+    if login: 
+        crud.login_user(db, email)
+    else: 
+        crud.logout_user(db, email)
+    return crud.get_user(db, email)
+
 # Rutas de la API
 @app.post("/users/", response_model=User)
 def create_user(user: UserCreate, db: Session = Depends(get_db)):

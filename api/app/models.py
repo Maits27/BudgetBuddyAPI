@@ -1,5 +1,5 @@
 
-from sqlalchemy import Column, Integer, String, Float, ForeignKey
+from sqlalchemy import Column, Integer, String, Float, ForeignKey, Boolean
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
 
@@ -11,6 +11,7 @@ class User(Base):
     email = Column(String, primary_key=True, index=True)
     password = Column(String)
     profile_image = Column(String, default="/budgetbuddy_api/images/start_icon.png")
+    login = Column(Boolean, default=False)
 
     gastos = relationship("Gasto", back_populates="user")
 

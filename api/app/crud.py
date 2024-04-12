@@ -6,6 +6,12 @@ from typing import Optional
 ##################################################################################
 ##################################    USERS    ###################################
 ##################################################################################
+def login_user(db: Session, email: str):
+    db.query(User).filter(User.email == email).update({User.login: True})
+def logout_user(db: Session, email: str):
+    db.query(User).filter(User.email == email).update({User.login: False})
+def is_user_logged(db: Session, email: str):
+    return db.query(User.login).filter(User.email == email).first()
 
 def get_user(db: Session, email: str) -> User:
     return db.query(User).filter(User.email == email).first()
