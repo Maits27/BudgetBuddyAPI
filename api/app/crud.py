@@ -11,7 +11,9 @@ def login_user(db: Session, email: str):
 def logout_user(db: Session, email: str):
     db.query(User).filter(User.email == email).update({User.login: False})
 def is_user_logged(db: Session, email: str):
-    return db.query(User.login).filter(User.email == email).first()
+    user = db.query(User.login).filter(User.email == email).first()
+    return [user] if user else []
+
 
 def get_user(db: Session, email: str) -> User:
     return db.query(User).filter(User.email == email).first()
@@ -83,7 +85,7 @@ def create_gastos(db: Session, gastos: list[GastoCreate]):
     db.add_all(db_gastos)
     db.commit()
     return db_gastos
-    
+
 def create_gasto(db: Session, gasto: GastoCreate):
     db_gasto = Gasto(
         id=gasto.id, 
