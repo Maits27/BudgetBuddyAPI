@@ -52,7 +52,11 @@ async def send_broadcast_notification(message: Message):
 
 @app.get('/login/{email}', response_model=bool)
 def login_user(email: str, db: Session = Depends(get_db)):
-    return crud.is_user_logged(db, email)
+    logedUser = crud.is_user_logged(db, email)
+    if logedUser:
+        return logedUser
+    else:
+        return False
 
 @app.post('/login/{email}', response_model=User)
 def login_user(email: str, login:bool, db: Session = Depends(get_db)):
