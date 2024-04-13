@@ -53,8 +53,7 @@ async def send_broadcast_notification(message: Message):
 @app.get('/login/{email}', response_model=bool)
 def login_user(email: str, db: Session = Depends(get_db)):
     user = crud.is_user_logged(db, email)
-    if not user:
-        raise HTTPException(status_code=404, detail="User doesn't exist")
+    print(user)
     return user
 
 @app.post('/login/{email}', response_model=User)

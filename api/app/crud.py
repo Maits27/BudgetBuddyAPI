@@ -8,8 +8,10 @@ from typing import Optional
 ##################################################################################
 def login_user(db: Session, email: str):
     db.query(User).filter(User.email == email).update({User.login: True})
+    
 def logout_user(db: Session, email: str):
     db.query(User).filter(User.email == email).update({User.login: False})
+
 def is_user_logged(db: Session, email: str):
     user = db.query(User.login).filter(User.email == email).first()
     return user[0] if user else user
