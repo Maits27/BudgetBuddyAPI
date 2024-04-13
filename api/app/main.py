@@ -134,7 +134,13 @@ async def set_user_profile_image(file: UploadFile, email: str, db: Session = Dep
 
 @app.post('/gastos/{user_id}/', response_model=Gasto)
 def create_gasto(gasto: GastoCreate, db: Session = Depends(get_db)):
-    return crud.create_gasto(db, gasto)
+    existing_gasto = crud.get_gasto(db=db, id=gasto.id)
+    if existing_gasto:
+        # Si ya existe un gasto con el mismo ID, actualiza los datos del gasto existente
+        return crud.update_gasto(db=db, gasto_id=gasto.id, new_gasto_data=gasto)
+    else:
+        # Si no existe un gasto con el mismo ID, crea uno nuevo
+        return crud.create_gasto(db=db, gasto=gasto)
 
 @app.get('/gastos/{user_id}/', response_model=list[Gasto])
 def read_gastos_by_user(user_id: str, db: Session = Depends(get_db)):

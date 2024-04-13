@@ -62,8 +62,8 @@ def set_profile_image(db: Session, email: str, path: str) -> bool:
 ##################################    GASTOS    ##################################
 ##################################################################################
 
-# def get_gasto(db: Session, id: str):
-#     return db.query(Gasto).filter(Gasto.id == id).first()
+def get_gasto(db: Session, id: str):
+    return db.query(Gasto).filter(Gasto.id == id).first()
 
 def get_gastos(db: Session, skip: int = 0, limit: int = 100):
     return db.query(Gasto).offset(skip).limit(limit).all()
@@ -84,6 +84,18 @@ def create_gasto(db: Session, gasto: GastoCreate):
     db.refresh(db_gasto)
     return db_gasto
 
+def update_gasto(db: Session, id: str, gasto: GastoCreate):
+    db_gasto = db.query(Gasto).filter(Gasto.id == id).first()
+    db_gasto.nombre = gasto.nombre
+    db_gasto.cantidad = gasto.cantidad
+    db_gasto.fecha = gasto.fecha
+    db_gasto.tipo = gasto.tipo
+    db_gasto.longitud = gasto.longitud
+    db_gasto.latitud = gasto.latitud
+    db_gasto.user_id = gasto.user_id
+    db.commit()
+    db.refresh(db_gasto)
+    return db_gasto
 # def delete_gasto(db: Session, id: str):
 #     db_gasto = db.query(Gasto).filter(Gasto.id == id).first()
 #     db.delete(db_gasto)
