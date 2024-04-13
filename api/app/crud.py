@@ -96,11 +96,12 @@ def update_gasto(db: Session, id: str, gasto: GastoCreate):
     db.commit()
     db.refresh(db_gasto)
     return db_gasto
-# def delete_gasto(db: Session, id: str):
-#     db_gasto = db.query(Gasto).filter(Gasto.id == id).first()
-#     db.delete(db_gasto)
-#     db.commit()
-#     return db_gasto
+    
+def delete_gasto(db: Session, id: str):
+    db_gasto = db.query(Gasto).filter(Gasto.id == id).first()
+    db.delete(db_gasto)
+    db.commit()
+    return db_gasto
 
 def get_gastos_by_user(db: Session, user_id: Optional[str] = None, skip: int = 0, limit: int = 100):
     if user_id:

@@ -140,6 +140,7 @@ def create_gasto(gasto: GastoCreate, db: Session = Depends(get_db)):
         return crud.update_gasto(db=db, id=gasto.id, gasto=gasto)
     else:
         # Si no existe un gasto con el mismo ID, crea uno nuevo
+        crud.delete_gasto(db, gasto.id)
         return crud.create_gasto(db=db, gasto=gasto)
 
 @app.get('/gastos/{user_id}/', response_model=list[Gasto])
