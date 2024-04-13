@@ -68,6 +68,22 @@ def get_gasto(db: Session, id: str):
 def get_gastos(db: Session, skip: int = 0, limit: int = 100):
     return db.query(Gasto).offset(skip).limit(limit).all()
 
+def create_gastos(db: Session, gastos: list[GastoCreate]):
+    delete_all_gastos_by_user(db, gastos[0].user_id)
+    db_gastos = [Gasto(
+        id=gasto.id, 
+        nombre=gasto.nombre, 
+        cantidad=gasto.cantidad, 
+        fecha=gasto.fecha, 
+        tipo=gasto.tipo, 
+        longitud=gasto.longitud,
+        latitud=gasto.latitud,
+        user_id=gasto.user_id
+    ) for gasto in gastos]
+    db.add_all(db_gastos)
+    db.commit()
+    return db_gastos
+    
 def create_gasto(db: Session, gasto: GastoCreate):
     db_gasto = Gasto(
         id=gasto.id, 
@@ -96,7 +112,7 @@ def update_gasto(db: Session, id: str, gasto: GastoCreate):
     db.commit()
     db.refresh(db_gasto)
     return db_gasto
-    
+
 def delete_gasto(db: Session, id: str):
     db_gasto = db.query(Gasto).filter(Gasto.id == id).first()
     db.delete(db_gasto)
