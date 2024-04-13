@@ -66,6 +66,8 @@ def login_user(email: str, login:bool, db: Session = Depends(get_db)):
     print(login)
     print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
     if login==True: 
+        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+        print("LOGIN")
         crud.login_user(db, email)
     else: 
         crud.logout_user(db, email)
