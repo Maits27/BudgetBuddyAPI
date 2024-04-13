@@ -138,9 +138,11 @@ async def set_user_profile_image(file: UploadFile, email: str, db: Session = Dep
 def create_gasto(gasto: GastoCreate, db: Session = Depends(get_db)):
     return crud.create_gasto(db, gasto)
 
-@app.post('/gastos/{user_id}/', response_model=list[Gasto])
+@app.post('/gastos/{user_id}/', response_model=Gasto)
 def create_gastos(gastos: List[GastoCreate], db: Session = Depends(get_db)):
-    return crud.create_gastos(db, gastos)
+    for gasto in gastos:
+        gasto = crud.create_gasto(db, gasto)
+    return gasto
 
 @app.get('/gastos/{user_id}/', response_model=list[Gasto])
 def read_gastos_by_user(user_id: str, db: Session = Depends(get_db)):

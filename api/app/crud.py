@@ -80,20 +80,20 @@ def get_gasto(db: Session, id: str):
 def get_gastos(db: Session, skip: int = 0, limit: int = 100):
     return db.query(Gasto).offset(skip).limit(limit).all()
 
-def create_gastos(db: Session, gastos: list[GastoCreate]):
-    db_gastos = [Gasto(
-        id=gasto.id, 
-        nombre=gasto.nombre, 
-        cantidad=gasto.cantidad, 
-        fecha=gasto.fecha, 
-        tipo=gasto.tipo, 
-        longitud=gasto.longitud,
-        latitud=gasto.latitud,
-        user_id=gasto.user_id
-    ) for gasto in gastos]
-    db.add_all(db_gastos)
-    db.commit()
-    return db_gastos
+# def create_gastos(db: Session, gastos: list[GastoCreate]):
+#     db_gastos = [Gasto(
+#         id=gasto.id, 
+#         nombre=gasto.nombre, 
+#         cantidad=gasto.cantidad, 
+#         fecha=gasto.fecha, 
+#         tipo=gasto.tipo, 
+#         longitud=gasto.longitud,
+#         latitud=gasto.latitud,
+#         user_id=gasto.user_id
+#     ) for gasto in gastos]
+#     db.add_all(db_gastos)
+#     db.commit()
+#     return db_gastos
 
 def create_gasto(db: Session, gasto: GastoCreate):
     db_gasto = Gasto(
