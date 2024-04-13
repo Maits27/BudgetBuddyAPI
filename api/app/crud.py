@@ -7,14 +7,22 @@ from typing import Optional
 ##################################    USERS    ###################################
 ##################################################################################
 def login_user(db: Session, email: str):
-    db.query(User).filter(User.email == email).update({User.login: True})
+    user = db.query(User).filter(User.email == email).first()
+    if user:
+        user.login = True
+        db.commit()
     
 def logout_user(db: Session, email: str):
-    db.query(User).filter(User.email == email).update({User.login: False})
+    user = db.query(User).filter(User.email == email).first()
+    if user:
+        user.login = False
+        db.commit()
 
 def is_user_logged(db: Session, email: str):
     user = db.query(User.login).filter(User.email == email).first()
     if user:
+        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+        print(user[0])
         return user[0]
     return user
 
