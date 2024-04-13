@@ -62,12 +62,7 @@ def login_user(email: str, db: Session = Depends(get_db)):
 def login_user(email: str, login:bool, db: Session = Depends(get_db)):
     if not (crud.get_user(db, email)):
         raise HTTPException(status_code=404, detail="User doesn't exist")
-    print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-    print(login)
-    print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
     if login==True: 
-        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-        print("LOGIN")
         crud.login_user(db, email)
     else: 
         crud.logout_user(db, email)
@@ -142,6 +137,10 @@ async def set_user_profile_image(file: UploadFile, email: str, db: Session = Dep
 @app.post('/gastos/{user_id}/', response_model=Gasto)
 def create_gasto(gasto: GastoCreate, db: Session = Depends(get_db)):
     return crud.create_gasto(db, gasto)
+
+@app.post('/gastos/{user_id}/', response_model=list[Gasto])
+def create_gastos(gastos: list[GastoCreate], db: Session = Depends(get_db)):
+    return crud.create_gastos(db, gastos)
 
 @app.get('/gastos/{user_id}/', response_model=list[Gasto])
 def read_gastos_by_user(user_id: str, db: Session = Depends(get_db)):

@@ -21,8 +21,6 @@ def logout_user(db: Session, email: str):
 def is_user_logged(db: Session, email: str):
     user = db.query(User.login).filter(User.email == email).first()
     if user:
-        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-        print(user[0])
         return user[0]
     return user
 
@@ -83,7 +81,6 @@ def get_gastos(db: Session, skip: int = 0, limit: int = 100):
     return db.query(Gasto).offset(skip).limit(limit).all()
 
 def create_gastos(db: Session, gastos: list[GastoCreate]):
-    delete_all_gastos_by_user(db, gastos[0].user_id)
     db_gastos = [Gasto(
         id=gasto.id, 
         nombre=gasto.nombre, 
