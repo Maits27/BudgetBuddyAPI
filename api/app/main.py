@@ -134,6 +134,8 @@ async def set_user_profile_image(file: UploadFile, email: str, db: Session = Dep
 
 @app.post('/gastos/{user_id}/', response_model=Gasto)
 def create_gasto(gasto: GastoCreate, db: Session = Depends(get_db)):
+    print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+    print(gasto)
     return crud.create_gasto(db, gasto)
 
 @app.get('/gastos/{user_id}/', response_model=list[Gasto])
