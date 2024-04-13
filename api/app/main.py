@@ -52,6 +52,9 @@ async def send_broadcast_notification(message: Message):
 
 @app.get('/login/{email}', response_model=bool)
 def login_user(email: str, db: Session = Depends(get_db)):
+    print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+    print(email)
+    print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
     user = crud.is_user_logged(db, email)
     print(user)
     return user
