@@ -137,7 +137,7 @@ def create_gasto(gasto: GastoCreate, db: Session = Depends(get_db)):
     existing_gasto = crud.get_gasto(db=db, id=gasto.id)
     if existing_gasto:
         # Si ya existe un gasto con el mismo ID, actualiza los datos del gasto existente
-        return crud.update_gasto(db=db, gasto_id=gasto.id, new_gasto_data=gasto)
+        return crud.update_gasto(db=db, id=gasto.id, gasto=gasto)
     else:
         # Si no existe un gasto con el mismo ID, crea uno nuevo
         return crud.create_gasto(db=db, gasto=gasto)
