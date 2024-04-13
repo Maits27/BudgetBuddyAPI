@@ -62,7 +62,9 @@ def login_user(email: str, db: Session = Depends(get_db)):
 def login_user(email: str, login:bool, db: Session = Depends(get_db)):
     if not (crud.get_user(db, email)):
         raise HTTPException(status_code=404, detail="User doesn't exist")
+    print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
     print(login)
+    print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
     if login==True: 
         crud.login_user(db, email)
     else: 
