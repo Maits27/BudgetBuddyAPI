@@ -12,7 +12,7 @@ def logout_user(db: Session, email: str):
     db.query(User).filter(User.email == email).update({User.login: False})
 def is_user_logged(db: Session, email: str):
     user = db.query(User.login).filter(User.email == email).first()
-    return [user] if user else []
+    return user[0] if user else user
 
 
 def get_user(db: Session, email: str) -> User:
