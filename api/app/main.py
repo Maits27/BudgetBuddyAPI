@@ -140,6 +140,7 @@ def create_gasto(gasto: GastoCreate, db: Session = Depends(get_db)):
 
 @app.post('/gastos_upload/{user_id}/', response_model=Gasto)
 def create_gastos(gastos: List[GastoCreate], db: Session = Depends(get_db)):
+    delete_all_gastos_by_user(gastos[0].user_id, db)
     for gasto in gastos:
         print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
         print(gasto)
