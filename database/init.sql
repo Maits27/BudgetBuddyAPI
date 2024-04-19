@@ -51,9 +51,9 @@ INSERT INTO gastos VALUES('Gasto Inicial 94',4.0,19813,'Otros',43.26,-2.95,'budg
 INSERT INTO gastos VALUES('Gasto Inicial 25',50.0,19887,'Comida',43.26,-2.95,'budgetbuddy46@gmail.com','2ad32466-d371-4f71-9507-8fcaea762f99');
 INSERT INTO gastos VALUES('Gasto Inicial 55',20.0,19807,'Ropa',43.26,-2.95,'budgetbuddy46@gmail.com','e92ff5af-14a6-496f-b99b-c25b188df850');
 INSERT INTO gastos VALUES('Gasto Inicial 45',25.0,19897,'Hogar',43.26,-2.95,'budgetbuddy46@gmail.com','b5cb64d1-6cff-4c2a-9dda-24d742ea6b50');
-INSERT INTO gastos VALUES('Gasto Inicial 65',50.0,19818,'Transporte',43.26,-2.95,'budgetbuddy46@gmail.com','ac8691ce-2ae4-4f54-a190-f09ecc825a00');
-INSERT INTO gastos VALUES('Gasto Inicial 75',20.0,19838,'Comida',43.26,-2.95,'budgetbuddy46@gmail.com','b8a16766-210e-4176-81d8-e05c5b36a612');
-INSERT INTO gastos VALUES('Gasto Inicial 85',25.0,19828,'Actividad',43.26,-2.95,'budgetbuddy46@gmail.com','2515bb6d-cd5f-4214-ac42-5d1524392320');
+INSERT INTO gastos VALUES('Gasto Inicial 65',50.0,19850,'Transporte',43.26,-2.95,'budgetbuddy46@gmail.com','ac8691ce-2ae4-4f54-a190-f09ecc825a00');
+INSERT INTO gastos VALUES('Gasto Inicial 75',20.0,19849,'Comida',43.26,-2.95,'budgetbuddy46@gmail.com','b8a16766-210e-4176-81d8-e05c5b36a612');
+INSERT INTO gastos VALUES('Gasto Inicial 85',25.0,19848,'Actividad',43.26,-2.95,'budgetbuddy46@gmail.com','2515bb6d-cd5f-4214-ac42-5d1524392320');
 INSERT INTO gastos VALUES('Gasto Inicial 95',5.0,19844,'Otros',43.26,-2.95,'budgetbuddy46@gmail.com','6ca7f88c-bb87-4666-af3e-972aa2b38bcc');
 INSERT INTO gastos VALUES('Gasto Inicial 26',60.0,19845,'Comida',43.26,-2.95,'budgetbuddy46@gmail.com','81ced323-9157-459c-8189-df1a9a9d0d9d');
 INSERT INTO gastos VALUES('Gasto Inicial 56',24.0,19846,'Ropa',43.26,-2.95,'budgetbuddy46@gmail.com','c7c6c8ea-dd5b-44f6-8f20-52ced41ffff6');
@@ -73,13 +73,13 @@ INSERT INTO gastos VALUES('Gasto Inicial 28',80.0,19869,'Comida',43.26,-2.95,'bu
 INSERT INTO gastos VALUES('Gasto Inicial 58',32.0,19860,'Ropa',43.26,-2.95,'budgetbuddy46@gmail.com','7907cb01-d3bb-4312-8ef7-295224c71e3f');
 INSERT INTO gastos VALUES('Gasto Inicial 48',40.0,19863,'Hogar',43.26,-2.95,'budgetbuddy46@gmail.com','98ffa268-7e71-4f61-a885-93624e0a5af4');
 INSERT INTO gastos VALUES('Gasto Inicial 68',80.0,19861,'Transporte',43.26,-2.95,'budgetbuddy46@gmail.com','9762b1c2-5971-4d43-bc11-278f8b865e55');
-INSERT INTO gastos VALUES('Gasto Inicial 78',32.0,19862,'Comida',43.26,-2.95,'budgetbuddy46@gmail.com','eab66529-e826-4350-b81f-3bfb871b98e2');
-INSERT INTO gastos VALUES('Gasto Inicial 88',40.0,19866,'Actividad',43.26,-2.95,'budgetbuddy46@gmail.com','adb8a8b3-4bb8-4257-9fc3-29ced084ae69');
-INSERT INTO gastos VALUES('Gasto Inicial 98',8.0,19813,'Otros',43.26,-2.95,'budgetbuddy46@gmail.com','18d9a2b6-59d6-477b-a10e-260cdb3f678a');
-INSERT INTO gastos VALUES('Gasto Inicial 29',90.0,19891,'Comida',43.26,-2.95,'budgetbuddy46@gmail.com','513c8d6d-f400-480f-9728-8b35716cbf47');
-INSERT INTO gastos VALUES('Gasto Inicial 59',36.0,19811,'Ropa',43.26,-2.95,'budgetbuddy46@gmail.com','f16274ce-456b-493d-ba0d-26aa906897fd');
-INSERT INTO gastos VALUES('Gasto Inicial 49',45.0,19801,'Hogar',43.26,-2.95,'budgetbuddy46@gmail.com','df30e47e-c83c-468d-a883-dfb71ce2a83d');
-INSERT INTO gastos VALUES('Gasto Inicial 69',90.0,19822,'Transporte',43.26,-2.95,'budgetbuddy46@gmail.com','c1d66049-b4a7-47b5-ab43-2ef8adea45f4');
-INSERT INTO gastos VALUES('Gasto Inicial 79',36.0,19842,'Comida',43.26,-2.95,'budgetbuddy46@gmail.com','3dce78b1-87ef-400a-acb7-add0802d59b1');
-INSERT INTO gastos VALUES('Gasto Inicial 89',45.0,19832,'Actividad',43.26,-2.95,'budgetbuddy46@gmail.com','ba1beb43-8e49-45a9-a830-0335660fa30a');
+INSERT INTO gastos VALUES('Gasto Inicial 78',32.0,19859,'Comida',43.26,-2.95,'budgetbuddy46@gmail.com','eab66529-e826-4350-b81f-3bfb871b98e2');
+INSERT INTO gastos VALUES('Gasto Inicial 88',40.0,19858,'Actividad',43.26,-2.95,'budgetbuddy46@gmail.com','adb8a8b3-4bb8-4257-9fc3-29ced084ae69');
+INSERT INTO gastos VALUES('Gasto Inicial 98',8.0,19857,'Otros',43.26,-2.95,'budgetbuddy46@gmail.com','18d9a2b6-59d6-477b-a10e-260cdb3f678a');
+INSERT INTO gastos VALUES('Gasto Inicial 29',90.0,19856,'Comida',43.26,-2.95,'budgetbuddy46@gmail.com','513c8d6d-f400-480f-9728-8b35716cbf47');
+INSERT INTO gastos VALUES('Gasto Inicial 59',36.0,19855,'Ropa',43.26,-2.95,'budgetbuddy46@gmail.com','f16274ce-456b-493d-ba0d-26aa906897fd');
+INSERT INTO gastos VALUES('Gasto Inicial 49',45.0,19854,'Hogar',43.26,-2.95,'budgetbuddy46@gmail.com','df30e47e-c83c-468d-a883-dfb71ce2a83d');
+INSERT INTO gastos VALUES('Gasto Inicial 69',90.0,19853,'Transporte',43.26,-2.95,'budgetbuddy46@gmail.com','c1d66049-b4a7-47b5-ab43-2ef8adea45f4');
+INSERT INTO gastos VALUES('Gasto Inicial 79',36.0,19852,'Comida',43.26,-2.95,'budgetbuddy46@gmail.com','3dce78b1-87ef-400a-acb7-add0802d59b1');
+INSERT INTO gastos VALUES('Gasto Inicial 89',45.0,19851,'Actividad',43.26,-2.95,'budgetbuddy46@gmail.com','ba1beb43-8e49-45a9-a830-0335660fa30a');
 
